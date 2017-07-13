@@ -3,31 +3,14 @@ from django.http import HttpResponse
 from tweepy import Stream
 from tweepy import OAuthHandler
 from tweepy.streaming import StreamListener
+import TwitterApi
 
 # Create your views here.
 
+urlArray = TwitterApi.getImageUrlFile("hideo_kojima_en")
+
+print (urlArray)
 
 def indexer(request):
-    return HttpResponse("Hello, world. You're at the polls index.")
+    return HttpResponse("A")
 
-
-
-ckey="fsdfasdfsafsffa"
-csecret="asdfsadfsadfsadf"
-atoken="asdf-aassdfs"
-asecret="asdfsadfsdafsdafs"
-
-class listener(StreamListener):
-
-    def on_data(self, data):
-        print(data)
-        return(True)
-
-    def on_error(self, status):
-        print status
-
-auth = OAuthHandler(ckey, csecret)
-auth.set_access_token(atoken, asecret)
-
-twitterStream = Stream(auth, listener())
-twitterStream.filter(track=["car"])

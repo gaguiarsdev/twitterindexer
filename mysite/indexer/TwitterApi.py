@@ -17,11 +17,12 @@ auth.set_access_token(atoken, asecret)
 def getImageUrlFile(sentUser):
 
     api = tweepy.API(auth)
+    urlArray = []
 
     user = api.get_user(sentUser)
     print (user.screen_name)
 
-    filename = user.screen_name+".csv"
+    filename = user.screen_name+".txt"
 
     print (filename)
     saveFile = open(filename,'w')
@@ -32,8 +33,10 @@ def getImageUrlFile(sentUser):
     for tweet in public_tweets:
         if 'media' in tweet.entities:
             for image in  tweet.entities['media']:
+                urlArray.append(image['media_url'])
                 data = image['media_url']
                 saveFile.write(data)
                 saveFile.write('\n')
 
     saveFile.close()
+    return urlArray
