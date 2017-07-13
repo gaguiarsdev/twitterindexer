@@ -1,0 +1,11 @@
+{% extends "indexer/header.html" %}
+
+
+{% block content %}
+
+{% for img in urlArray %}
+  <img src={{img}}></img>
+{% endfor %}
+
+
+{% endblock %}
