@@ -29,7 +29,7 @@ def getImageUrlFile(sentUser):
 
 
 
-    public_tweets = api.user_timeline(screen_name = user.screen_name,count=200)
+    public_tweets = api.user_timeline(screen_name = user.screen_name,count=50)
     for tweet in public_tweets:
         if 'media' in tweet.entities:
             for image in  tweet.entities['media']:
