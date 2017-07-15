@@ -7,6 +7,7 @@ from .forms import twitterForm
 # Create your views here.
 
 urlArray = []
+usersAdded = "None"
 
 
 def indexer(request):
@@ -14,8 +15,7 @@ def indexer(request):
           form = twitterForm(request.POST)
           if form.is_valid():
                data = form.cleaned_data
-               urlArray = views.getImageUrlFile(data['twitterUserId'])
-               return render(request, 'indexer/home.html', {'urlArray': urlArray})
-     else:
-          return render(request, 'indexer/home.html')
+               urlArray.extend(views.getImageUrlFile(data['twitterUserId']))
+               return render(request, 'indexer/home.html', {'urlArray': urlArray, 'usersAdded': usersAdded})
+     return render(request, 'indexer/home.html', {'urlArray': urlArray, 'usersAdded': usersAdded})
 
